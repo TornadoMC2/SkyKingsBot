@@ -3,6 +3,8 @@ const client = new Discord.Client();
 
 const Hypixel = require('hypixel-api')
 const clientMC = new Hypixel('35b1d2ca-397a-4e51-ab76-bf5418d281df')
+const SkyblockHypixel = require('hypixel-api-reborn')
+const skyblockClient = new SkyblockHypixel.Client('35b1d2ca-397a-4e51-ab76-bf5418d281df')
 
 const db = require('quick.db');
 
@@ -22,7 +24,7 @@ client.on("message", async message => {
   try {
     //message.channel.send("My money database has been reset, I am sorry for the inconvenience. If you have any concerns")
     let commandFile = require(`./commands/${cmd}.js`)
-    commandFile.run(message, client, args, cmd, clientMC)
+    commandFile.run(message, client, args, cmd, clientMC, skyblockClient)
     
   } catch(e) {
    console.log(e.stack) 
@@ -30,4 +32,4 @@ client.on("message", async message => {
   
 })
 
-client.login("NzI1NzQ1MzI3MTcyMjIzMDQ5.XvTNZQ.N1mfak6luvvJJPbgtQBE9sp118c")
+client.login("NzI1NzQ1MzI3MTcyMjIzMDQ5.XvVSuw.Cj1OyZVmhPm-Km3vTFED_88LyuE")

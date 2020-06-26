@@ -16,7 +16,8 @@
     "hypixel": "^1.0.3",
     "http-get": "^0.5.10",
     "hypixie": "^1.0.0",
-    "hypixel-api": "^1.2.0"
+    "hypixel-api": "^1.2.0",
+    "hypixel-api-reborn": "^2.0.0"
   },
   "engines": {
     "node": "12.x"
