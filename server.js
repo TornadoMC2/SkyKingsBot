@@ -30,4 +30,4 @@ client.on("message", async message => {
   
 })
 
-client.login("NzI1NzQ1MzI3MTcyMjIzMDQ5.XvTNZQ.N1mfak6luvvJJPbgtQBE9sp118c")
+client.login("token thing that I almost leaked lmao")
