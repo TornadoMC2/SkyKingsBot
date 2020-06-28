@@ -32,5 +32,4 @@ client.on("message", async message => {
   
 })
 
-
-client.login("NzI1NzQ1MzI3MTcyMjIzMDQ5.XvVSuw.Cj1OyZVmhPm-Km3vTFED_88LyuE")
+client.login(process.env.SECRET)
