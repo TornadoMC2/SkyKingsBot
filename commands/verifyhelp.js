@@ -10,5 +10,9 @@ exports.run = async  (message, client, args, cmd, clientMC) => {
 **3)** Click "Social Media". It is to the right of the Redstone block ("Status") button.
 **4)** Click "Discord". It is the second last option.
 **5)** Paste your Discord username into chat and hit enter. For reference your username is: ${message.author.tag}
-**6)** You're done! Now wait at least 1 minute and verify again.`)
+**6)** You're done! Now wait at least 1 minute and verify again.
+
+**Video Example - Link Discord**
+https://youtu.be/6ZXaZ-chzWI
+`)
 }
