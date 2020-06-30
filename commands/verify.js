@@ -21,8 +21,8 @@ exports.run = async  (message, client, args, cmd, clientMC) => {
       message.channel.send(`**:white_check_mark: |** <@${userMention}>, you were verified successfully!\nPlease run the command q!checkroles to get the right roles.`)
       if (message.guild.members.get(client.user.id).hasPermission("MANAGE_NICKNAMES") && message.guild.members.get(client.user.id).hasPermission("CHANGE_NICKNAME")) {
         message.member.setNickname(`${player.player.displayname}`)
-        message.member.addRole(verified)
       }
+      message.member.addRole(verified)
     } else if(discordHypixel !== userID){
       message.channel.send(`**:no_entry: |** <@${userMention}> the minecraft account you specified is linked to another user's discord.\nPlease check your spelling and your social profile on Hypixel.\nFor further help, do q!verifyhelp or q!linkhelp`)
     }
