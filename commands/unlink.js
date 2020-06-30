@@ -10,7 +10,7 @@ exports.run = async  (message, client, args, cmd, clientMC) => {
   let verified = message.guild.roles.find(role => role.name === "Verified")
   
   if(message.member.roles.has(verified.id)) {
-    message.member.setNickname(`UNLINKED`)
+    //message.member.setNickname(`UNLINKED`)
     message.member.removeRole(verified)
     message.channel.send(`**:white_check_mark: |** <@${userMention}>, your account has been unlinked succesfully`)
     

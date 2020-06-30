@@ -14,7 +14,9 @@ exports.run = async  (message, client, args, cmd, clientMC, skyblockClient) => {
   let reactionFilter = [];
   let profileSelected;
   
+  let profileID;
   
+  let hasBanking;
   
   var totalCollections = {coal:0, cobblestone:0, iron:0, gold:0, diamond:0, lapis:0, emerald:0, redstone:0, quartz:0,
                           obsidian:0, glowstone_dust:0, gravel:0, ice:0, netherrack:0, sand:0, end_stone:0, wheat:0, 
@@ -23,6 +25,12 @@ exports.run = async  (message, client, args, cmd, clientMC, skyblockClient) => {
                           bone:0, string:0, spider_eye:0, gunpowder:0, pearl:0, ghast_tear:0, slime_ball:0, blaze_rod:0,
                           magma_cream:0, raw_fish:0, raw_salmon:0, clownfish:0, pufferfish:0, shard:0, crystal:0, clay:0,
                           lily_pad:0, ink_sack:0, sponge:0, oak:0, spruce:0, birch:0, dark_oak:0, acacia:0, jungle:0}
+  
+  let zombieLevel4, spiderLevel4, wolfLevel4, 
+      zombieLevel5, spiderLevel5, wolfLevel5, 
+      zombieLevel6, spiderLevel6, wolfLevel6, 
+      zombieLevel7, spiderLevel7, wolfLevel7, 
+      zombieLevel8, spiderLevel8, wolfLevel8;
   
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -55,6 +63,7 @@ exports.run = async  (message, client, args, cmd, clientMC, skyblockClient) => {
       skyblockClient.getSkyblockProfiles(uuid).then(async (profiles) => {
           if(!profiles) return //msg.edit(`**:no_entry: |** <@${userMention}>, I could not find a skyblock profile linked to your account.`)
           //console.log(profiles); 
+          
           for(var g = 0; g < profiles.length; g++) {
             profileList.push(profiles[g].profileName)
             //console.log(profileList)
@@ -193,11 +202,13 @@ exports.run = async  (message, client, args, cmd, clientMC, skyblockClient) => {
                     console.log("recognized reacion: " + profileSelected)
                     console.log(profileSelected)
                     
+                    
                     //reaction.remove(user).catch(error => console.error('Failed to clear reactions: ', error));
                     message.channel.send(`**:mag_right: |** <@${userMention}> searching the Hypixel API...`).then(async (msg) => {
                     for(var p = 0; p < profiles.length; p++) {
             if(profiles[p].profileName == capitalize(profileSelected)) {//return //
               for(var i = 0; i < profiles[p].members.length; i++) {
+                profileID = profiles[p].profileId
               //console.log("testing2")
               //console.log(profiles[p])
               if(profiles[p].members[i].collections !== null) {
@@ -509,7 +520,51 @@ exports.run = async  (message, client, args, cmd, clientMC, skyblockClient) => {
                 }
               } 
 
-
+              clientMC.getSkyblockProfileData(profileID).then(async (profile) => {
+                hasBanking = profile.profile.hasOwnProperty('banking')
+                if(hasBanking) {
+                  if(profile.profile.banking.balance >= 1000000) {let role = message.guild.roles.find(r => r.name == "Millionaire [1M+]"); await message.member.addRole(role).catch(console.error)}
+                  if(profile.profile.banking.balance >= 10000000) {let role = message.guild.roles.find(r => r.name == "Multi Millionaire [10M+]"); await message.member.addRole(role).catch(console.error)}
+                  if(profile.profile.banking.balance >= 100000000) {let role = message.guild.roles.find(r => r.name == "Maxed Millionaire [100M+]"); await message.member.addRole(role).catch(console.error)}
+                }
+                if(profile.profile.members[`${uuid}`].slayer_bosses !== null) {
+                  const slayerBoss = profile.profile.members[`${uuid}`].slayer_bosses
+                  if(slayerBoss.zombie !== null) {
+                    //check zombie slayer levels
+                    zombieLevel6 = slayerBoss.zombie.claimed_levels.hasOwnProperty('level_6')
+                    zombieLevel7 = slayerBoss.zombie.claimed_levels.hasOwnProperty('level_7')
+                    zombieLevel8 = slayerBoss.zombie.claimed_levels.hasOwnProperty('level_8')
+                    //add roles
+                    if(zombieLevel6) {let role = message.guild.roles.find(r => r.name == "Zombie [6]"); await message.member.addRole(role).catch(console.error)}
+                    if(zombieLevel7) {let role = message.guild.roles.find(r => r.name == "Zombie [7]"); await message.member.addRole(role).catch(console.error)}
+                    if(zombieLevel8) {let role = message.guild.roles.find(r => r.name == "Zombie [8]"); await message.member.addRole(role).catch(console.error)}
+                  }
+                  if(slayerBoss.spider !== null) {
+                    //check spider slayer levels
+                    spiderLevel6 = slayerBoss.spider.claimed_levels.hasOwnProperty('level_6')
+                    spiderLevel7 = slayerBoss.spider.claimed_levels.hasOwnProperty('level_7')
+                    spiderLevel8 = slayerBoss.spider.claimed_levels.hasOwnProperty('level_8')
+                    //add roles
+                    if(spiderLevel4) {let role = message.guild.roles.find(r => r.name == "Spider [4]"); await message.member.addRole(role).catch(console.error)}
+                    if(spiderLevel5) {let role = message.guild.roles.find(r => r.name == "Spider [5]"); await message.member.addRole(role).catch(console.error)}
+                    if(spiderLevel6) {let role = message.guild.roles.find(r => r.name == "Spider [6]"); await message.member.addRole(role).catch(console.error)}
+                    if(spiderLevel7) {let role = message.guild.roles.find(r => r.name == "Spider [7]"); await message.member.addRole(role).catch(console.error)}
+                    if(spiderLevel8) {let role = message.guild.roles.find(r => r.name == "Spider [8]"); await message.member.addRole(role).catch(console.error)}
+                  }
+                  if(slayerBoss.wolf !== null) {
+                    //check wolf slayer levels
+                    wolfLevel6 = slayerBoss.wolf.claimed_levels.hasOwnProperty('level_6')
+                    wolfLevel7 = slayerBoss.wolf.claimed_levels.hasOwnProperty('level_7')
+                    wolfLevel8 = slayerBoss.wolf.claimed_levels.hasOwnProperty('level_8')
+                    //add roles
+                    if(wolfLevel6) {let role = message.guild.roles.find(r => r.name == "Wolf [6]"); await message.member.addRole(role).catch(console.error)}
+                    if(wolfLevel7) {let role = message.guild.roles.find(r => r.name == "Wolf [7]"); await message.member.addRole(role).catch(console.error)}
+                    if(wolfLevel8) {let role = message.guild.roles.find(r => r.name == "Wolf [8]"); await message.member.addRole(role).catch(console.error)}
+                  }
+                }
+              })
+                
+                
               if(profiles[p].members[i].uuid == player.uuid) {
 
                 //console.log(profiles[0].members[i])
