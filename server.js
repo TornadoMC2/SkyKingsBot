@@ -8,6 +8,10 @@ const skyblockClient = new SkyblockHypixel.Client('35b1d2ca-397a-4e51-ab76-bf541
 
 const db = require('quick.db');
 
+client.on("ready", () => {
+  console.log("Bot Online")
+})
+
 client.on("message", async message => {
   
   let prefix = "q!" 
