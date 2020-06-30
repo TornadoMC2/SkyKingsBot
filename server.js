@@ -8,6 +8,10 @@ const skyblockClient = new SkyblockHypixel.Client('35b1d2ca-397a-4e51-ab76-bf541
 
 const db = require('quick.db');
 
+client.on("ready", () => {
+  console.log("Bot Online")
+})
+
 client.on("message", async message => {
   
   let prefix = "q!" 
@@ -17,7 +21,7 @@ client.on("message", async message => {
   
   if(message.author.bot) return
   
-  if(message.content == "<@519565520677371905>" || message.content == "<@!519565520677371905>") {
+  if(message.content == "<@725745327172223049>" || message.content == "<@!725745327172223049>") {
     message.reply("My prefix for this server is ``" + prefix + "``") 
   }
   if(!message.content.startsWith(prefix)) return
@@ -32,4 +36,4 @@ client.on("message", async message => {
   
 })
 
-client.login(process.env.SECRET)
+//client.login(process.env.SECRET)
