@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const Hypixel = require('hypixel-api')
+
 const clientMC = new Hypixel('596cb77b-b019-4bb8-b23f-a22062210c1e')
 const SkyblockHypixel = require('hypixel-api-reborn')
 const skyblockClient = new SkyblockHypixel.Client('596cb77b-b019-4bb8-b23f-a22062210c1e')
